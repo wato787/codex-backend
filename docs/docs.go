@@ -15,9 +15,9 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/hello": {
+        "/health": {
             "get": {
-                "description": "do ping",
+                "description": "Check the health of the service",
                 "consumes": [
                     "application/json"
                 ],
@@ -25,14 +25,17 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Hello World"
+                    "Health"
                 ],
-                "summary": "liveness probe",
+                "summary": "Health check endpoint",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
                         }
                     }
                 }
