@@ -40,6 +40,5 @@ func SetupDB() {
 	if err := db.Connect(db.DefaultConfig()); err != nil {
 		log.Fatal(err)
 	}
-	// defer db.Close() を削除
 	db.DB.AutoMigrate(&models.User{})
 }
