@@ -1,11 +1,12 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-// @BasePath /api/v1
+// @BasePath /api
 
 // PingExample godoc
 // @Summary liveness probe
