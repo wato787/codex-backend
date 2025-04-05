@@ -4,7 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/wato787/controller"
+
+	"github.com/wato787/app/controller"
 	"github.com/wato787/docs"
 )
 
