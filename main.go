@@ -8,7 +8,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 
 	"github.com/wato787/app/controller"
-	"github.com/wato787/app/models"
+	models "github.com/wato787/app/model"
 	"github.com/wato787/db"
 	"github.com/wato787/docs"
 )
