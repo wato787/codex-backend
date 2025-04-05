@@ -8,8 +8,8 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 
 	"github.com/wato787/app/controller"
+	db "github.com/wato787/app/database"
 	models "github.com/wato787/app/model"
-	"github.com/wato787/db"
 	"github.com/wato787/docs"
 )
 
