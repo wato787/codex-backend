@@ -11,14 +11,3 @@ services:
     command: sh -c "go mod download && go run main.go"
     environment:
       - GIN_MODE=release
-  db:
-    image: mysql
-    container_name: db
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: codex
-      TZ: 'Asia/Tokyo'
-    volumes:
-      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
-    ports:
-      - 3306:3306
