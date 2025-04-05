@@ -23,8 +23,8 @@ type Config struct {
 // DefaultConfig はデフォルトの接続設定を返す
 func DefaultConfig() *Config {
 	return &Config{
-		User:     "root",
-		Password: "password",
+		User:     "codexuser",
+		Password: "Codex@Pass123",
 		Host:     "127.0.0.1",
 		Port:     "3306",
 		DBName:   "codex",

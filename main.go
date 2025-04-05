@@ -14,9 +14,10 @@ import (
 )
 
 func main() {
-
 	// DB接続
 	SetupDB()
+	// プログラム終了時にDBをクローズ
+	defer db.Close()
 
 	// ルーターのセットアップ
 	route := SetupRoutes()
@@ -27,7 +28,6 @@ func main() {
 	}
 	route.GET("/doc/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	route.Run(":8080")
-	
 }
 
 func SetupRoutes() *gin.Engine {
@@ -40,6 +40,6 @@ func SetupDB() {
 	if err := db.Connect(db.DefaultConfig()); err != nil {
 		log.Fatal(err)
 	}
-	defer db.Close()
+	// defer db.Close() を削除
 	db.DB.AutoMigrate(&models.User{})
 }
