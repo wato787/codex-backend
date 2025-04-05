@@ -1,19 +1,21 @@
 info:
   contact: {}
 paths:
-  /hello:
+  /health:
     get:
       consumes:
       - application/json
-      description: do ping
+      description: Check the health of the service
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            type: string
-      summary: liveness probe
+            additionalProperties:
+              type: string
+            type: object
+      summary: Health check endpoint
       tags:
-      - Hello World
+      - Health
 swagger: "2.0"
