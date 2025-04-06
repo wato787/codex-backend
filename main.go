@@ -24,7 +24,7 @@ func main() {
 	docs.SwaggerInfo.BasePath = "/api"
 	api := route.Group("/api")
 	{
-		api.GET("/hello", controller.HelloWorld)
+		api.GET("/health", controller.HealthCheck)
 	}
 	route.GET("/doc/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	route.Run(":8080")
@@ -32,7 +32,6 @@ func main() {
 
 func SetupRoutes() *gin.Engine {
 	route := gin.Default()
-	route.GET("/", controller.HelloWorld)
 	return route
 }
 
