@@ -30,7 +30,3 @@ type UserResponse struct {
 	Email string `json:"email"`
 }
 
-// ErrorResponse はエラーレスポンス用のDTO
-type ErrorResponse struct {
-	Error string `json:"error"`
-}
