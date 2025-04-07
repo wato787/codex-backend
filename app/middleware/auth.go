@@ -52,16 +52,8 @@ func (m *AuthMiddleware) RequireAuth() gin.HandlerFunc {
 			return
 		}
 
-		// ユーザーが存在するか確認
-		user, err := m.authService.GetUserByID(userID)
-		if err != nil {
-			c.JSON(http.StatusUnauthorized, dto.ErrorResponse{Error: "ユーザーが見つかりません"})
-			c.Abort()
-			return
-		}
 
 		// コンテキストにユーザー情報を保存
-		c.Set("user", user)
 		c.Set("userID", userID)
 		
 		// 次のハンドラーに進む
