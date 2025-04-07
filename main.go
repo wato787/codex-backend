@@ -9,7 +9,7 @@ import (
 
 	"github.com/wato787/app/controller"
 	db "github.com/wato787/app/database"
-	models "github.com/wato787/app/model"
+	"github.com/wato787/app/model"
 	"github.com/wato787/docs"
 )
 
@@ -39,5 +39,5 @@ func SetupDB() {
 	if err := db.Connect(db.DefaultConfig()); err != nil {
 		log.Fatal(err)
 	}
-	db.DB.AutoMigrate(&models.User{})
+	db.DB.AutoMigrate(&model.User{})
 }
