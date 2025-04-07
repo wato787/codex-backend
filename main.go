@@ -10,34 +10,81 @@ import (
 	"github.com/wato787/app/controller"
 	db "github.com/wato787/app/database"
 	"github.com/wato787/app/model"
+
 	"github.com/wato787/docs"
 )
 
+// @title           Codex API
+// @version         1.0
+// @description     Go言語とGORMで構築されたAPI
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name   API Support
+// @contact.url    http://www.example.com/support
+// @contact.email  support@example.com
+
+// @license.name  MIT
+// @license.url   https://opensource.org/licenses/MIT
+
+// @host      localhost:8080
+// @BasePath  /api
+
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
+// @description Type "Bearer" followed by a space and JWT token.
 func main() {
 	// DB接続
 	SetupDB()
-	// プログラム終了時にDBをクローズ
 	defer db.Close()
 
 	// ルーターのセットアップ
 	route := SetupRoutes()
-	docs.SwaggerInfo.BasePath = "/api"
-	api := route.Group("/api")
-	{
-		api.GET("/health", controller.HealthCheck)
-	}
-	route.GET("/doc/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	route.Run(":8080")
 }
 
 func SetupRoutes() *gin.Engine {
 	route := gin.Default()
+	
+	// Swagger
+	docs.SwaggerInfo.BasePath = "/api"
+	route.GET("/doc/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+	
+	// コントローラーとミドルウェアのインスタンス作成
+	authController := controller.NewAuthController()
+	// authMiddleware := middleware.NewAuthMiddleware()
+	// TODO : ミドルウェア適用
+	
+
+	
+	// APIグループ
+	api := route.Group("/api")
+	{
+		// 認証関連のエンドポイント（認証不要）
+		auth := api.Group("/auth")
+		{
+			auth.POST("/signup", authController.Signup)
+			auth.POST("/login", authController.Login)
+		}
+		
+		// 公開エンドポイント
+		api.GET("/health", controller.HealthCheck)
+	}
+	
 	return route
 }
+
+
 
 func SetupDB() {
 	if err := db.Connect(db.DefaultConfig()); err != nil {
 		log.Fatal(err)
 	}
-	db.DB.AutoMigrate(&model.User{})
+	
+	// マイグレーション
+	if err := db.DB.AutoMigrate(&model.User{}); err != nil {
+		log.Fatal("Failed to migrate database: ", err)
+	}
+	
+	log.Println("Database migration completed")
 }
