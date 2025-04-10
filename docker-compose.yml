@@ -11,3 +11,24 @@ services:
     command: sh -c "go mod download && go run main.go"
     environment:
       - GIN_MODE=release
+      - DB_USER=codexuser
+      - DB_PASSWORD=Codex@Pass123
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=codex
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: codex
+      MYSQL_USER: codexuser
+      MYSQL_PASSWORD: Codex@Pass123
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
