@@ -1,34 +1,29 @@
 {
     "swagger": "2.0",
     "info": {
-        "contact": {}
+        "description": "Go言語とGORMで構築されたAPI",
+        "title": "Codex API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.example.com/support",
+            "email": "support@example.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0"
     },
-    "paths": {
-        "/health": {
-            "get": {
-                "description": "Check the health of the service",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Health"
-                ],
-                "summary": "Health check endpoint",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
+    "host": "localhost:8080",
+    "basePath": "/api",
+    "paths": {},
+    "securityDefinitions": {
+        "BearerAuth": {
+            "description": "Type \"Bearer\" followed by a space and JWT token.",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }

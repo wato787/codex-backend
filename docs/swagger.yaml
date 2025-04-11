@@ -1,21 +1,22 @@
+basePath: /api
+host: localhost:8080
 info:
-  contact: {}
-paths:
-  /health:
-    get:
-      consumes:
-      - application/json
-      description: Check the health of the service
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            additionalProperties:
-              type: string
-            type: object
-      summary: Health check endpoint
-      tags:
-      - Health
+  contact:
+    email: support@example.com
+    name: API Support
+    url: http://www.example.com/support
+  description: Go言語とGORMで構築されたAPI
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: Codex API
+  version: "1.0"
+paths: {}
+securityDefinitions:
+  BearerAuth:
+    description: Type "Bearer" followed by a space and JWT token.
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"
